@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="郑德凯">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,maximum-scale=1.0,minimum-scale=1.0">
+	<script src="../lib/jquery-3.1.1.min.js"></script>
+	<script src="../lib/jquery.fullPage.min.js"></script>
+	<script src="../lib/jquery.easing.1.3.min.js"></script>
+
+
+	<link rel="stylesheet" href="../css/H5.css">
+	<script src="../js/H5.js"></script>
+	<script src="../js/H5ComponentBase.js"></script>
+	<link rel="stylesheet" href="../css/H5ComponentBase.css">
+	<title>skill</title>
+	
+</head>
+<body>
+
+<script>
+	$(function(){
+		var h5 = new H5();
+			h5
+		    .addPage('face', '首页')
+				.addComponent( 'logo', { 
+					text : 'logo',
+					width : 400,
+					height : 100,
+					css : { backgroundColor : 'red', top : 200, opacity:0 },
+					center : true,
+					animateIn : { opacity : 1 },
+					animateOut : { opacity : 0 }
+				} )
+				.addComponent( 'slogan', { 
+					text : 'slogan',
+					width : 400,
+					height : 100,
+					css : { backgroundColor : 'blue', top : 350 },
+					center : true
+				} )
+			.addPage('desc', '核心理念')
+				.addComponent( 'caption', { 
+					text : '核心理念',
+					width : 400,
+					height : 100,
+					css : { backgroundColor : 'orange', top : 350 },
+					center : true
+				} )
+		    .addPage('page-3', '课程方向分布')
+				.addComponent( 'caption', { 
+					text : '课程方向分布',
+					width : 400,
+					height : 100,
+					css : { backgroundColor : 'green', top : 350 },
+					center : true
+				} )
+			.loader()	
+	})
+</script>
+</body>
+</html>

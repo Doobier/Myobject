@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="郑德凯">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,maximum-scale=1.0,minimum-scale=1.0">
+	<script src="../lib/jquery-3.1.1.min.js"></script>
+	<script src="../lib/jquery.fullPage.min.js"></script>
+	<script src="../lib/jquery.easing.1.3.min.js"></script>
+	<title>skill</title>
+	<style>
+		body{
+			margin:0;
+			padding: 0;
+		}
+		.component{
+			width: 50%;
+			height: 50px;
+			margin-bottom: 20px;
+			background-color: #ccc;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="h5">
+		<div class="page section" id="page-1">
+			<div class="component log">logo</div>
+			<div class="component slogan">slogan</div>
+		</div>
+		<div class="page section" id="page-2">
+			<div class="component desc">desc</div>
+		</div>
+		<div class="page section" id="page-3">
+			<div class="component bar">bar</div>
+		</div>
+		<div class="page section" id="page-4">
+			<div class="component circle">circle</div>
+		</div>
+	</div>
+	<script>
+		$('#h5').fullpage({
+			sectionsColor:['green','blue','red','orange'],
+			onLeave:function(index, nextIndex, direction){
+				//debugger
+				$('#h5').find('.page').eq(index - 1).trigger('onLeave');
+			},
+			afterLoad:function(anchorLink, index){
+				//debugger
+				$('#h5').find('.page').eq(index - 1).trigger('onLoad');
+			}
+		});
+		$('.page').on('onLeave',function(){
+			console.log( $(this).attr('id'), '==>>', 'onLeave');
+			$(this).find('.component').trigger('onLeave');
+		});
+		$('.page').on('onLoad',function(){
+			console.log( $(this).attr('id'), '==>>', 'onLoad');
+			$(this).find('.component').trigger('onLoad');
+		});
+		$('.component').on('onLoad',function(){
+			$(this).fadeIn();
+			return false;
+		});
+		$('.component').on('onLeave',function(){
+			$(this).fadeOut();
+			return false;
+		});
+	</script>
+</body>
+</html>
