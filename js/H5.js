@@ -1,6 +1,6 @@
 /**/
 
-var H5 = function(  ){
+var H5 = function( ){
 	this.id = ( `h5_${Math.random()}` ).replace('.', '_');
 	this.el = $( `<div class="h5" id="${this.id}">` ).hide();
 	this.page = [];
@@ -27,12 +27,13 @@ var H5 = function(  ){
 		},cfg);
 
 		var component;
-		var page = this.page.slice( -1 )[0];
+		var page = this.page.slice( - 1 )[0];
 
 		switch( cfg.type ){
 			case 'base':
 				component = new H5ComponentBase(name, cfg);
 				break;
+
 			default:	
 		}
 
