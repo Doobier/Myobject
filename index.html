@@ -43,34 +43,57 @@
 			"id2":"2",
 			"id3":[
 					{	
-						"id1":"1",
-						"id2":"2",
-						"id3":[
+						"id4":"4",
+						"id5":"5",
+						"id6":[
 								{
-									"id1":"1",
-									"id2":"2"
+									"id7":"7",
+									"id8":"8",
+									"id9":[
+											{
+												"id7":"7",
+												"id8":"8",
+												"id9":[]
+								}
+									]
 								}
 							]
 					},
 					{
-						"id1":"1",
-						"id2":"2",
-						"id3":[
+						"id10":"10",
+						"id11":"11",
+						"id12":[
 								{
-									"id1":"1",
-									"id2":"2"
+									"id13":"13",
+									"id14":"14",
+									"id15":[
+												{
+													"id13":"15",
+													"id14":"17",
+													"id15":[]
+								}	
+									]
 								}
 							]
 					}
 		
 				]
 		};
-	for( key in json ){
-		console.log( key + '=' + json[key] );
-		if( json[key].indexOf( 0 ) == '[' ){
 
+		function parse( json ){
+
+			for( var key in json ){
+				if( typeof json[key] != 'object' ){
+
+					console.log( key + '=>' + json[key] );
+				}else{
+					for(var i = 0; i < json[key].length; i++ ){
+						parse( json[key][i]);
+					}
+				}
+			}
 		}
-	}
+		parse( json );
 	
 	</script>
 </body>
