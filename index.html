@@ -37,9 +37,41 @@
 	</div>
 	<img src="" alt="">
 	<script>
-		$('#h5').fullpage({
+		var json=
+		{	
+			"id1":"1",
+			"id2":"2",
+			"id3":[
+					{	
+						"id1":"1",
+						"id2":"2",
+						"id3":[
+								{
+									"id1":"1",
+									"id2":"2"
+								}
+							]
+					},
+					{
+						"id1":"1",
+						"id2":"2",
+						"id3":[
+								{
+									"id1":"1",
+									"id2":"2"
+								}
+							]
+					}
+		
+				]
+		};
+	for( key in json ){
+		console.log( key + '=' + json[key] );
+		if( json[key].indexOf( 0 ) == '[' ){
 
-		});
+		}
+	}
+	
 	</script>
 </body>
 </html>
