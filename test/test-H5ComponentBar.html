@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="郑德凯">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,maximum-scale=1.0,minimum-scale=1.0">
+	<script src="../lib/jquery-3.1.1.min.js"></script>
+	<!-- <script src="../lib/jquery.fullPage.min.js"></script> -->
+	<!-- <script src="../lib/jquery.easing.1.3.min.js"></script> -->
+	<link rel="stylesheet" href="../css/H5ComponentBase.css">
+	<script src="../js/H5ComponentBase.js"></script>
+
+	<script src="../js/H5ComponentBar.js"></script>
+	<link rel="stylesheet" href="../css/H5ComponentBar.css">
+
+	<title>skill</title>
+	<style>
+		body{
+			margin:0;
+			padding: 0;
+			background-color: #000;
+			font-size: 12px;
+		}
+		.iphone{
+			width: 340px;
+			height: 540px;
+			background-color: #fff;
+			position: absolute;
+			top:50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+</head>
+<body>
+	<div class="iphone"></div>
+	<script>
+		var cfg = {
+			type : 'bar',
+			
+			width : 530,
+			height : 600,
+			data : [
+				['Javascript', 0.4, '#ff7676'],
+				['HTML/CSS', 0.2 ],
+				['CSS3', 0.3 ],
+				['HTML5', 0.1 ],
+				['JQuery', 0.35 ],
+				['Bootstrap', 0.13 ],
+				['AngularJs', 0.08 ]
+			],
+			css : {
+				top : 100,
+				opacity : 0
+			},
+			animateIn : { 
+				opacity : 1,
+				top : 200
+			 },
+			animateOut : { 
+				opacity : 0,
+				top : 100
+			 },
+			center : true
+		}
+
+		var h5 = new H5ComponentBar( 'MyBarComponent', cfg );
+
+		$('.iphone').append(h5);
+
+		var leave = true;
+		$('body').click(function(){
+			leave = !leave;
+			$('.h5_component').trigger( leave ? 'onLeave' : 'onLoad' );
+		})
+	</script>
+</body>
+</html>
