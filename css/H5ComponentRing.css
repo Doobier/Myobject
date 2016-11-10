@@ -17,13 +17,21 @@
     z-index: 90;
     background-color: #fff;
     border-radius: 50%;
-    -webkit-transform:scale(.8);
+    transform:scale(.8);
 }
 
 .h5_component_ring .text{
+    position: absolute;
     width: 100%;
-    top: 40%;
+    top:40%;
+    z-index: 99;
+    font-size: 12px;
+    text-align: center;
+    height: 24px;
     opacity: 0;
+    transition: all 1s;
 }
 .h5_component_ring .text .per{
+	font-size: 12px;
+    text-align: center;
 }

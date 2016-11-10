@@ -4,97 +4,44 @@
 	<meta charset="UTF-8">
 	<meta name="author" content="郑德凯">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,maximum-scale=1.0,minimum-scale=1.0">
+	
+	<title>郑德凯前端求职简历</title>
 	<script src="./lib/jquery-3.1.1.min.js"></script>
 	<script src="./lib/jquery.fullPage.min.js"></script>
 	<script src="./lib/jquery.easing.1.3.min.js"></script>
-	<title>skill</title>
+	<script>
+		var res = [ 'Base','Bar','Bar_v','Point','Polyline','Radar','Pie','Ring'
+		];
+		var html = [];
+		for( s in res ){
+			html.push(`<script src="./js/H5Component${ res[s] }.js"><\/script>`);
+			html.push(`<link rel="stylesheet" href="css/H5Component${ res[s] }.css" />`);
+
+		}
+		document.write( html.join(''));
+	</script>
+
+	<script src="js/H5.js"></script>
+	<link rel="stylesheet" href="css/H5.css">
+
+	<!-- 主要逻辑 -->
+	<script>
+		$(function(){
+			var h5 = new H5();
+
+			h5
+			.addPage('face')
+		})
+	</script>
 	<style>
 		body{
 			margin:0;
 			padding: 0;
 		}
-		.bg1{ 
-			background: url(./images/bgred.jpg) no-repeat;
-			background-size: cover;
-		}
-		.bg{ 
-			background: url(./images/bg.png) no-repeat; 
-			background-size: cover;
-		}
 	</style>
 </head>
 <body>
-	<div id="h5">
-		<div class="section bg1"></div>
-		<div class="section bg"></div>
-		<div class="section bg"></div>
-		<div class="section bg"></div>
-		<div class="section bg"></div>
-		<div class="section bg"></div>
-		<div class="section bg"></div>
-		<div class="section bg"></div>
-		<div class="section bg"></div>
-	</div>
-	<img src="" alt="">
-	<script>
-		var json=
-		{	
-			"id1":"1",
-			"id2":"2",
-			"id3":[
-					{	
-						"id4":"4",
-						"id5":"5",
-						"id6":[
-								{
-									"id7":"7",
-									"id8":"8",
-									"id9":[
-											{
-												"id7":"7",
-												"id8":"8",
-												"id9":[]
-								}
-									]
-								}
-							]
-					},
-					{
-						"id10":"10",
-						"id11":"11",
-						"id12":[
-								{
-									"id13":"13",
-									"id14":"14",
-									"id15":[
-												{
-													"id13":"15",
-													"id14":"17",
-													"id15":[]
-								}	
-									]
-								}
-							]
-					}
-		
-				]
-		};
-
-		function parse( json ){
-
-			for( var key in json ){
-				if( typeof json[key] != 'object' ){
-
-					console.log( key + '=>' + json[key] );
-				}else{
-					for(var i = 0; i < json[key].length; i++ ){
-						parse( json[key][i]);
-					}
-				}
-			}
-		}
-		parse( json );
 	
-	</script>
+	
 </body>
 </html>

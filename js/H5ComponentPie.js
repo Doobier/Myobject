@@ -1,4 +1,4 @@
-/*雷达图表组件对象*/
+/*pie图表组件对象*/
 
 var H5ComponentPie = function( name, cfg ){
 	var component = new H5ComponentBase( name, cfg );
@@ -103,17 +103,20 @@ var H5ComponentPie = function( name, cfg ){
 		ctx.moveTo( r, r );
 		if( per <= 0 ){
 			ctx.arc( r, r, r, 0, Math.PI * 2 );
+			component.find('.text').css( 'opacity', 0 );
+			//console.log(per)
 		}else{
-			ctx.arc( r, r, r, sAngel, sAngel + Math.PI * 2 * per, true );
+			ctx.arc( r, r, r, sAngel, sAngel + Math.PI*2*per , true );
 		}
 		
 		ctx.fill();
 		ctx.stroke();
 		if( per >= 1 ){
-			component.find('.text').css( 'opacity', 1 );
-		}
-		if( per <= 0 ){
-			component.find('.text').css( 'opacity', 0 );
+			component.find('.text').css('transition','all 0s');
+		    H5ComponentPie.reSort( component.find('.text') );
+		    component.find('.text').css('transition','all 1s');
+		    component.find('.text').css('opacity',1);
+		    ctx.clearRect(0,0,w,h);
 		}
 	}	
 
@@ -121,7 +124,7 @@ var H5ComponentPie = function( name, cfg ){
 
 	component.on('onLoad', function(){
 		var s = 0;
-		for( let i = 0; i < 100; i++ ){
+		for( var i = 0; i < 100; i++ ){
 			setTimeout( function(){
 				s += .01;
 				draw( s );
@@ -131,7 +134,7 @@ var H5ComponentPie = function( name, cfg ){
 
 	component.on('onLeave', function(){
 		var s = 1;
-		for( let i = 0; i < 100; i++ ){
+		for( var i = 0; i < 100; i++ ){
 			setTimeout( function(){
 				s -= .01;
 				draw( s );
@@ -140,4 +143,65 @@ var H5ComponentPie = function( name, cfg ){
 		}
 	})
 	return component;
+}
+
+
+H5ComponentPie.reSort = function( list ){
+
+  //  1. 检测相交
+  var compare = function( domA, domB ){
+
+    //  元素的位置，不用 left，因为有时候 left为 auto
+    var offsetA = $(domA).offset();
+    var offsetB = $(domB).offset();
+
+    //  domA 的投影
+    var shadowA_x = [ offsetA.left,$(domA).width()  + offsetA.left ];
+    var shadowA_y = [ offsetA.top ,$(domA).height() + offsetA.top ];
+
+    //  domB 的投影
+    var shadowB_x = [ offsetB.left,$(domB).width()  + offsetB.left ];
+    var shadowB_y = [ offsetB.top ,$(domB).height() + offsetB.top  ];
+
+    //  检测 x
+    var intersect_x = ( shadowA_x[0] > shadowB_x[0] && shadowA_x[0] < shadowB_x[1] ) || ( shadowA_x[1] > shadowB_x[0] &&  shadowA_x[1] < shadowB_x[1]  );
+
+    //  检测 y 轴投影是否相交
+    var intersect_y = ( shadowA_y[0] > shadowB_y[0] && shadowA_y[0] < shadowB_y[1] ) || ( shadowA_y[1] > shadowB_y[0] &&  shadowA_y[1] < shadowB_y[1]  );
+    return intersect_x && intersect_y;
+  }
+
+
+  //  2. 错开重排
+  var reset = function( domA, domB ){
+
+    if( $(domA).css('top') != 'auto' ){
+
+      $(domA).css('top', parseInt($(domA).css('top')) + $(domB).height() );
+    }
+    if( $(domA).css('bottom') != 'auto' ){
+
+      $(domA).css('bottom', parseInt($(domA).css('bottom')) + $(domB).height() );
+    }
+
+  }
+
+  //  定义将要重排的元素
+  var willReset = [list[0]];
+
+  $.each(list,function(i,domTarget){
+    if( compare(willReset[willReset.length-1] , domTarget ) ){
+      willReset.push(domTarget);  //  不会把自身加入到对比
+    }
+  });
+
+  if(willReset.length >1 ){
+      $.each(willReset,function(i,domA){
+          if( willReset[i+1] ){
+            reset(domA,willReset[i+1]);
+          }
+      });
+      H5ComponentPie.reSort( willReset );
+  }
+
 }
