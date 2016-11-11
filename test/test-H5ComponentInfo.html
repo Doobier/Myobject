@@ -9,9 +9,10 @@
 	<!-- <script src="../lib/jquery.easing.1.3.min.js"></script> -->
 	<link rel="stylesheet" href="../css/H5ComponentBase.css">
 	<script src="../js/H5ComponentBase.js"></script>
-
-	<script src="../js/H5ComponentBar.js"></script>
-	<link rel="stylesheet" href="../css/H5ComponentBar.css">
+	
+	
+	<script src="../js/H5ComponentInfo.js"></script>
+	<link rel="stylesheet" href="../css/H5ComponentInfo.css">
 
 	<title>skill</title>
 	<style>
@@ -36,18 +37,18 @@
 	<div class="iphone"></div>
 	<script>
 		var cfg = {
-			type : 'bar',
-			width : 530,
-			height : 600,
-			data : [
-				['Javascript', 0.4, '#ff7676'],
-				['HTML/CSS', 0.2 ],
-				['CSS3', 0.3 ],
-				['HTML5', 0.1 ],
-				['JQuery', 0.35 ],
-				['Bootstrap', 0.13 ],
-				['AngularJs', 0.08 ]
-			],
+			type : 'info',
+			
+			width : 400,
+			height : 400,
+			data : {
+				'姓名':'郑德凯',
+				'籍贯':'浙江',
+				'学历':'本科',
+				'工作经验':'2年前端经验',
+				'电话':'17706779606',
+				'邮箱':'529312016@qq.com'
+			},
 			css : {
 				top : 100,
 				opacity : 0
@@ -63,7 +64,7 @@
 			center : true
 		}
 
-		var h5 = new H5ComponentBar( 'MyBarComponent', cfg );
+		var h5 = new H5ComponentInfo( 'MyInfoComponent', cfg );
 
 		$('.iphone').append(h5);
 

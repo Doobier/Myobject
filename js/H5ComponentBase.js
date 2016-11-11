@@ -16,8 +16,12 @@ var H5ComponentBase = function( name, cfg ){
 	if( cfg.center === true){
 		component.css({
 			left : '50%',
-			transform : `translateX(-50%)`
+			marginLeft : ( cfg.width/4 * -1) + 'px'
 		})
+	}
+
+	if( typeof cfg.onclick === 'function'){
+		component.on('click', cfg.onclick );
 	}
 
 	component.on('onLoad',function(){

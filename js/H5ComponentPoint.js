@@ -12,6 +12,7 @@ var H5ComponentPoint = function( name, cfg ){
 		//point.text( `${item[0]}-${item[1]}` );
 		var name = $(`<div class="name">${ item[0] }</div>`);
 		var rate = $(`<div class="per">${ item[1] * 100 }%</div>`);
+
 		name.append( rate );
 		point.append( name );
 
@@ -28,8 +29,18 @@ var H5ComponentPoint = function( name, cfg ){
 				top : item[4]
 			})
 		}
+		point.css('transition','all 1s '+idx*.5+'s')
 
 		component.append( point );
 	})
+
+	component.find('.point').on('click',function(){
+
+        component.find('.point').removeClass('point_focus');
+        $(this).addClass('point_focus');
+
+        return false;
+   }).eq(0).addClass('point_focus');
+
 	return component;
 }
