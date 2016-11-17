@@ -50,3 +50,12 @@ body{
 	position: absolute;
 	top:50%;
 }
+#info{
+	width: 100%;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	color: #0062e0;
+	position: absolute;
+	top:60%;
+}

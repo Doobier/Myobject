@@ -73,6 +73,7 @@
 		<div class="line5"></div>
 	</div>
 	<div id="rate">0%</div>
+	<p id="info">请使用最新的chrome浏览器观看</p>
 	<script>
 		var res = [ 'Base','Bar','Bar_v','Point','Polyline','Radar','Pie','Ring','Info'
 		];
@@ -519,15 +520,15 @@
 					animateOut : { opacity : 0}
 				})
 			.addPage()
-				.addComponent('caption',{text:'个人技能占比'})	//point	
+				.addComponent('caption',{text:'个人爱好'})	//point	
 				.addComponent('point',{
 					type : 'point',
 					width : 300,
 					height : 300,
 					data : [
-						['中级', 0.4, '#ff7676'],
-						['初级', 0.2, '#f00', 0, '-60%'],
-						['高级', 0.3, '#99c1ff', '50%', '-120%']
+						['看书', 0.4, '#ff7676'],
+						['运动', 0.2, '#f00', 0, '-60%'],
+						['网上冲浪', 0.3, '#99c1ff', '50%', '-120%']
 					],
 					css : {
 						bottom : 0,
@@ -576,7 +577,7 @@
 							$.fn.fullpage.moveTo( 1 )
 						}
 					})
-				.loader( ['images/tail_back.png','images/tail_share.png'],5 );
+				.loader( ['images/tail_back.png','images/tail_share.png','images/zdk_3.png','images/zdk_4.png','images/slide_up.png','images/zdkinfo.png','images/face_img_left.png','images/face_img_right.png','images/description_bg.gif','images/p1_people.png'] );
 		})
 	</script>
 </body>
